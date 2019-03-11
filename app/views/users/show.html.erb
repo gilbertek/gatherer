@@ -1,0 +1,11 @@
+<h1>User Management</h1>
+
+<h2>Admin Status</h2>
+
+<% if @user.admin? %>
+  <p>User is an admin</p>
+  <%= button_to 'Demote', user_admin_path(@user), method: :delete %>
+<% else %>
+  <p>User is not an admin</p>
+  <%= button_to 'Promote to admin', user_admins_path(@user) %>
+<% end %>

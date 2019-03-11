@@ -1,0 +1,7 @@
+<h1>Order Detail</h1>
+
+<% if @order.refunded? %>
+  <p>This order was refunded.</p>
+<% else %>
+  <%= button_to 'Refund', order_refunds_path(@order) %>
+<% end %>
