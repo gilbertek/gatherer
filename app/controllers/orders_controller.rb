@@ -5,6 +5,19 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def new
+    @order = Order.new
+  end
+
+  def create
+    @order = build_order
+    @order.user = current_user
+    if @order.save
+      redirect_to @order
+    else
+      render "new"
+    end
+
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
