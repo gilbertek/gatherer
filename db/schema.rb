@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_084426) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.boolean "refunded"
+    t.boolean "refunded", default: false
     t.string "token"
     t.string "phone_number"
     t.datetime "created_at", null: false

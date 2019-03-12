@@ -9,10 +9,22 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  class OrderCreator
+    def initialize(order: order)
+      @order = order
+    end
+
+    def save
+
+    end
+  end
+
   def create
     @order = build_order
     @order.user = current_user
-    if @order.save
+
+    if OrderCreator.new(order: @order).save
+    # if @order.save
       redirect_to @order
     else
       render "new"
