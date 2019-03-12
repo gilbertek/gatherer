@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
 class OrderMailer < ApplicationMailer
-  def refund_notification(order) end
+  default to: 'example@example.com'
+
+  def refund_notification
+    mail(subject: 'Order refunded')
+  end
 end
