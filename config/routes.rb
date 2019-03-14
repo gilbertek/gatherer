@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :orders, only: %i[show update new create] do
     resources :refunds, only: [:create]
   end
+
+  resource :events, only: %i[new create destroy]
 end
