@@ -1,0 +1,21 @@
+<h1>Signups</h1>
+
+<%= form_for @signup do  |f| %>
+  <div>
+    <% @signup.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :team_name %>
+    <%= f.text_field :team_name %>
+  </div>
+
+  <%= f.submit id: 'submit' %>
+<% end %>

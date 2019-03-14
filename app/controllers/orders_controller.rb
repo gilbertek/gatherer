@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     end
 
     def save
-
+      OrderMailer.with(order: order).confirmation.deliver_now if order.save
     end
   end
 
@@ -23,12 +23,13 @@ class OrdersController < ApplicationController
     @order = build_order
     @order.user = current_user
 
-    if OrderCreator.new(order: @order).save
-    # if @order.save
+    # if OrderCreator.new(order: @order).save
+    if @order.save
       redirect_to @order
     else
-      render "new"
+      render 'new'
     end
+  end
 
   def update
     @order = Order.find(params[:id])
@@ -42,6 +43,18 @@ class OrdersController < ApplicationController
   def edit; end
 
   private
+
+  class ConfirmingOrder < SimpleDelegator
+    def save
+      OrderMailer.with(order: self).confirmation.deliver_now if __getobj__.save
+    end
+  end
+
+  def build_order
+    ConfirmingOrder.new(
+      Order.new(order_params)
+    )
+  end
 
   def order_params
     params.permit(:refunded)

@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   before_validation :sanitize_phone_number
   before_create :generate_token
   before_create :update_last_order_date_for_user
-  after_save :send_confirmation_email
+  # after_save :send_confirmation_email
 
   belongs_to :user
 

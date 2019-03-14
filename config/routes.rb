@@ -2,11 +2,13 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:show] do
+  resources :signups, path: 'signups', only: %i[new create]
+
+  resources :users, only: %i[show new create] do
     resources :admins, only: %i[create destroy]
   end
 
-  resources :orders, only: %i[show update] do
+  resources :orders, only: %i[show update new create] do
     resources :refunds, only: [:create]
   end
 end

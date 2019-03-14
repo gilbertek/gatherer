@@ -4,7 +4,7 @@ require 'rails_helper'
 
 feature 'User refunds an order' do
   scenario 'successfully' do
-    order = create(:order)
+    order = create(:order, user: create(:user))
 
     visit order_path(order)
     click_button 'Refund'
