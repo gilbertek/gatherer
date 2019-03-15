@@ -4,28 +4,18 @@ require 'rails_helper'
 
 feature 'Event management' do
   scenario 'create event' do
-    visit new_event_path
+    event_on_page = Page::Event.new(title: 'abc123', description: 'description')
+    event_on_page.create
 
-    fill_in :event_title, with: 'A Refactoring Meetup'
-    fill_in :event_description, with: 'Fun for the whole team(lol, jk)'
-    click_button 'Create Event'
-
-    expect(page).to(
-      have_css('ul.event-attributes', text: 'A Refactoring Meetup')
-    )
+    expect(event_on_page).to exist?
   end
 
   scenario 'cancels event' do
-    visit new_event_path
+    event_on_page = Page::Event.new(title: 'title', description: 'description')
+    event_on_page.create
 
-    fill_in :event_title, with: 'Doomed'
-    fill_in :event_description, with: 'Not gonnna happen'
-    click_button 'Create Event'
+    event_on_page.cancel
 
-    click_button 'Cancel Event'
-
-    expect(page).to(
-      have_css('ul.event-attributes', text: 'Status: Canceled')
-    )
+    expect(event_on_page).to canceled
   end
 end
