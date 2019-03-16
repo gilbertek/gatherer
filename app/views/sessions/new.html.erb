@@ -1,0 +1,25 @@
+<h1>Login</h1>
+
+<h4>Please log in to continue.</h4>
+
+<%- if flash[:error] %>
+  <%= flash[:error] %>
+<% elsif flash[:success] %>
+  <%= flash[:success] %>
+<% end %>
+
+<%= form_for :session, url: sessions_path do |f| %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+
+
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+
+
+    <%= f.submit 'Log In', class: 'btn btn-primary' %>
+
+<% end %>
+
+New User? <%= link_to 'Click here to create an account.', new_user_path %>

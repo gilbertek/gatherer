@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  skip_before_action :require_valid_user!
+
   def show
     @user = find_user
   end
@@ -13,7 +15,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # yay
+      flash[:success] = 'You have successfully created an account. Please sign in to continue'
+      redirect_to login_path
     else
       render :new
     end
@@ -26,6 +29,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
