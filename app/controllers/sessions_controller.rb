@@ -22,7 +22,13 @@ class SessionsController < ApplicationController
     reset_session
   end
 
+  private
+
   def session_params
     params.require(:session).permit(:email, :password)
   end
+
+  # def reset_session
+  #   session.delete(:user_id)
+  # end
 end

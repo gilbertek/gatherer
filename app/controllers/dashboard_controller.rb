@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class DashboardController < ApplicationController
-  def show
-  end
+  skip_before_action :require_valid_user!
+
+  def show; end
 end

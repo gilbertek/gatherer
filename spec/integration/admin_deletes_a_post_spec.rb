@@ -6,7 +6,7 @@ feature 'Post deletion' do
   scenario 'admins can delete a post' do
     user = create(:user)
     post_by_user = create(:post, user: user)
-    admin = create(user, admin: true)
+    admin = create(:user, admin: true)
 
     sign_in_as(admin)
 
@@ -23,7 +23,7 @@ feature 'Post deletion' do
     sign_in_as(user)
     visit post_path(post_by_user)
 
-    expect(page).not.to have_css('a', text: 'Delete this post')
+    expect(page).not_to have_css('a', text: 'Delete this post')
   end
 
   def sign_in_as(user)

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SignupsController < ApplicationController
+  skip_before_action :require_valid_user!
+
   def new
     @signup = Signup.new
   end

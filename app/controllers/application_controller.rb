@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   before_action :require_valid_user!
 
+  helper_method :current_user
+
   def current_user
     @user ||= User.find(session[:user_id]) unless session[:user_id].blank?
   end

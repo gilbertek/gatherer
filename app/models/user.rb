@@ -8,4 +8,6 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   # validates_associated :team
+
+  has_many :posts
 end

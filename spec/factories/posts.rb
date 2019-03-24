@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :post do
     user
     title { 'MyString' }
-    body { 'MyString' }
-    publish_date { '2019-03-16 16:27:09' }
+    text { Faker::Lorem.paragraph(2) }
+    publish_date { Date.today }
   end
 end

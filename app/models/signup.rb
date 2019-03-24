@@ -10,8 +10,8 @@ class Signup
 
   def save
     if valid?
-      user = User.create!(email: email)
-      Team.create!(user: user, name: team_name)
+      # user = User.create!(email: email)
+      # Team.create!(user: user, name: team_name)
     end
   end
 end
